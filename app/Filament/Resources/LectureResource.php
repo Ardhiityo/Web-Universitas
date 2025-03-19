@@ -41,6 +41,7 @@ class LectureResource extends Resource
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('image')
                     ->image()
+                    ->columnSpanFull()
                     ->directory('Lecture')
                     ->required(),
             ]);
@@ -51,26 +52,25 @@ class LectureResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
+                    ->searchable()
+                    ->limit(10),
                 Tables\Columns\TextColumn::make('nidn')
+                    ->limit(10)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('education')
+                    ->limit(10)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('job_title')
+                    ->limit(10)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
+                    ->limit(10)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('topic')
+                    ->limit(10)
                     ->searchable(),
-                Tables\Columns\ImageColumn::make('image'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\ImageColumn::make('image')
+                    ->circular(),
             ])
             ->filters([
                 //

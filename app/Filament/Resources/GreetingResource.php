@@ -15,7 +15,7 @@ class GreetingResource extends Resource
 {
     protected static ?string $model = Greeting::class;
     protected static ?string $navigationGroup = 'Article';
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-bottom-center-text';
 
     public static function form(Form $form): Form
     {
@@ -39,6 +39,7 @@ class GreetingResource extends Resource
                 Tables\Columns\ImageColumn::make('image')
                     ->circular(),
                 Tables\Columns\TextColumn::make('content')
+                    ->html()
                     ->limit(80)
             ])
             ->filters([

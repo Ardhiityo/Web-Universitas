@@ -15,7 +15,7 @@ class VisionMissionResource extends Resource
 {
     protected static ?string $model = VisionMission::class;
     protected static ?string $navigationGroup = 'Information';
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-check';
 
     public static function form(Form $form): Form
     {

@@ -23,21 +23,27 @@ class FooterResource extends Resource
                 Forms\Components\FileUpload::make('image')
                     ->directory('Footer')
                     ->image()
+                    ->columnSpanFull()
                     ->required(),
                 Forms\Components\TextInput::make('instagram')
                     ->required()
+                    ->url()
+                    ->prefixIcon('heroicon-m-globe-alt')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('youtube')
                     ->required()
+                    ->url()
+                    ->prefixIcon('heroicon-m-globe-alt')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('linkedin')
                     ->required()
+                    ->url()
+                    ->prefixIcon('heroicon-m-globe-alt')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('facebook')
                     ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('address')
-                    ->required()
+                    ->url()
+                    ->prefixIcon('heroicon-m-globe-alt')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('email')
                     ->email()
@@ -47,6 +53,11 @@ class FooterResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('gmaps')
+                    ->required()
+                    ->url()
+                    ->prefixIcon('heroicon-m-globe-alt')
+                    ->maxLength(255),
+                Forms\Components\Textarea::make('address')
                     ->required()
                     ->maxLength(255),
             ]);

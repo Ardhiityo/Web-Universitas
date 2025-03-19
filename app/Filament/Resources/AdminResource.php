@@ -17,7 +17,7 @@ class AdminResource extends Resource
 {
     protected static ?string $model = Admin::class;
     protected static ?string $navigationGroup = 'Resource';
-    protected static ?string $navigationIcon = 'heroicon-o-user-circle';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
 
     public static function form(Form $form): Form
     {
@@ -27,13 +27,16 @@ class AdminResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('nip')
+                    ->numeric()
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('job_title')
                     ->required()
+                    ->columnSpanFull()
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('image')
                     ->image()
+                    ->columnSpanFull()
                     ->directory('Admin')
                     ->required(),
             ]);

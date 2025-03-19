@@ -28,6 +28,10 @@ class NewsResource extends Resource
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('slug')
+                    ->unique()
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\FileUpload::make('image')
                     ->image()
                     ->required()
@@ -46,6 +50,9 @@ class NewsResource extends Resource
                 Tables\Columns\TextColumn::make('user.name')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('title')
+                    ->limit(30)
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('slug')
                     ->limit(30)
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('image')

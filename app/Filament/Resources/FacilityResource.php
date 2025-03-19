@@ -15,7 +15,7 @@ class FacilityResource extends Resource
 {
     protected static ?string $model = Facility::class;
     protected static ?string $navigationGroup = 'Article';
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-building-library';
 
     public static function form(Form $form): Form
     {
@@ -39,6 +39,7 @@ class FacilityResource extends Resource
                 Tables\Columns\ImageColumn::make('image')
                     ->circular(),
                 Tables\Columns\TextColumn::make('content')
+                    ->html()
                     ->limit(50)
             ])
             ->filters([

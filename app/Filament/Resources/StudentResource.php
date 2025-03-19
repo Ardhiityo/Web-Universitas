@@ -2,13 +2,21 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\StudentResource\Pages;
-use App\Models\Student;
+use Closure;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Student;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Forms\Components\FileUpload;
+use App\Filament\Resources\StudentResource\Pages;
 
 class StudentResource extends Resource
 {
@@ -22,8 +30,14 @@ class StudentResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('fullname')
                     ->required()
+                    ->reactive()
+                    ->afterStateUpdated(function ($state, Set $set) {
+                        $nickname = explode(' ', $state);
+                        return $set('nickname', $nickname[0]);
+                    })
                     ->maxLength(255),
                 Forms\Components\TextInput::make('nickname')
+                    ->readOnly()
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('email')
@@ -31,16 +45,12 @@ class StudentResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('phone')
-                    ->tel()
                     ->required()
                     ->maxLength(255),
                 Forms\Components\Select::make('entry_scheme_id')
+                    ->columnSpanFull()
                     ->relationship('entryScheme', 'name')
                     ->label('Entry scheme')
-                    ->required(),
-                Forms\Components\FileUpload::make('image')
-                    ->directory('Student')
-                    ->image()
                     ->required(),
                 Forms\Components\Select::make('study_program_1_id')
                     ->relationship('studyProgramChoice1', 'name')
@@ -49,7 +59,13 @@ class StudentResource extends Resource
                 Forms\Components\Select::make('study_program_2_id')
                     ->relationship('studyProgramChoice2', 'name')
                     ->label('Study program choice 2')
-                    ->required()
+                    ->different('study_program_1_id')
+                    ->required(),
+                Forms\Components\FileUpload::make('image')
+                    ->directory('Student')
+                    ->image()
+                    ->columnSpanFull()
+                    ->required(),
             ]);
     }
 
@@ -58,36 +74,33 @@ class StudentResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('fullname')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('nickname')
+                    ->limit(10)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
+                    ->limit(10)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('phone')
+                    ->limit(10)
                     ->searchable(),
-                Tables\Columns\TextColumn::make('entry_scheme_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('entryScheme.name')
+                    ->limit(10)
                     ->sortable(),
-                Tables\Columns\ImageColumn::make('image'),
-                Tables\Columns\TextColumn::make('study_program_1_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('studyProgramChoice1.name')
+                    ->label('Study program 1')
+                    ->limit(10)
                     ->sortable(),
-                Tables\Columns\TextColumn::make('study_program_2_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('studyProgramChoice2.name')
+                    ->label('Study program 2')
+                    ->limit(10)
                     ->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\ImageColumn::make('image')
+                    ->circular(),
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([

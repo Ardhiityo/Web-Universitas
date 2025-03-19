@@ -45,6 +45,7 @@ class AboutMeResource extends Resource
                     ->stacked()
                     ->ring(5),
                 Tables\Columns\TextColumn::make('content')
+                    ->html()
                     ->limit(30)
             ])
             ->filters([

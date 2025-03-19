@@ -14,7 +14,7 @@ class RectorResource extends Resource
 {
     protected static ?string $model = Rector::class;
     protected static ?string $navigationGroup = 'Resource';
-    protected static ?string $navigationIcon = 'heroicon-o-user';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
 
     public static function form(Form $form): Form
     {
@@ -29,6 +29,7 @@ class RectorResource extends Resource
                 Forms\Components\FileUpload::make('image')
                     ->image()
                     ->directory('Rector')
+                    ->columnSpanFull()
                     ->required(),
             ]);
     }
@@ -38,8 +39,10 @@ class RectorResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->limit(30)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('job_title')
+                    ->limit(30)
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('image')
                     ->circular(),

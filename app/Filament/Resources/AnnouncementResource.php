@@ -2,13 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\AnnouncementResource\Pages;
-use App\Models\Announcement;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
+use App\Models\Announcement;
+use Filament\Resources\Resource;
+use Illuminate\Support\Facades\Auth;
+use AmidEsfahani\FilamentTinyEditor\TinyEditor;
+use App\Filament\Resources\AnnouncementResource\Pages;
 
 class AnnouncementResource extends Resource
 {
@@ -20,14 +25,23 @@ class AnnouncementResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('user_id')
-                    ->relationship('user', 'name')
-                    ->label('Name')
+                Forms\Components\Hidden::make('user_id')
+                    ->default(Auth::user()->id)
                     ->required(),
                 Forms\Components\TextInput::make('title')
                     ->required()
+                    ->debounce(3000)
+                    ->afterStateUpdated(
+                        function ($state, Set $set) {
+                            return $set('slug', Str::slug($state));
+                        }
+                    )
                     ->maxLength(255),
-                Forms\Components\Textarea::make('content')
+                Forms\Components\TextInput::make('slug')
+                    ->unique()
+                    ->required()
+                    ->maxLength(255),
+                TinyEditor::make('content')
                     ->required()
                     ->columnSpanFull(),
             ]);
@@ -38,13 +52,17 @@ class AnnouncementResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('user.name')
-                    ->label('Name')
+                    ->label('Creator')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('title')
-                    ->limit(30)
+                    ->limit(15)
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('slug')
+                    ->limit(15)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('content')
-                    ->limit(30)
+                    ->limit(15)
+                    ->html()
                     ->sortable()
             ])
             ->filters([
