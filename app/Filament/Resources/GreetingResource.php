@@ -14,7 +14,7 @@ use Filament\Tables\Table;
 class GreetingResource extends Resource
 {
     protected static ?string $model = Greeting::class;
-
+    protected static ?string $navigationGroup = 'Article';
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form

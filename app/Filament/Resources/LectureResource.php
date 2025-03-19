@@ -13,8 +13,8 @@ use Filament\Tables\Table;
 class LectureResource extends Resource
 {
     protected static ?string $model = Lecture::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Resource';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
 
     public static function form(Form $form): Form
     {

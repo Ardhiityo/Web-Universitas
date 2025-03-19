@@ -13,8 +13,8 @@ use Filament\Tables\Table;
 class FooterResource extends Resource
 {
     protected static ?string $model = Footer::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Article';
+    protected static ?string $navigationIcon = 'heroicon-o-bars-arrow-down';
 
     public static function form(Form $form): Form
     {
@@ -56,36 +56,32 @@ class FooterResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\ImageColumn::make('image')
+                    ->circular(),
                 Tables\Columns\TextColumn::make('instagram')
+                    ->limit(10)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('youtube')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('linkedin')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('facebook')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('address')
+                    ->limit(10)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
+                    ->limit(10)
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('facebook')
+                    ->limit(10)
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('address')
+                    ->limit(10)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('whatsapp')
+                    ->limit(10)
                     ->searchable(),
-                Tables\Columns\TextColumn::make('gmaps')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([

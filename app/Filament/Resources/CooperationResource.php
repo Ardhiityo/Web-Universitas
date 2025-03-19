@@ -14,8 +14,8 @@ use Filament\Tables\Table;
 class CooperationResource extends Resource
 {
     protected static ?string $model = Cooperation::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Information';
+    protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
 
     public static function form(Form $form): Form
     {

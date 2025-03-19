@@ -14,8 +14,9 @@ use App\Filament\Resources\AboutMeResource\Pages;
 class AboutMeResource extends Resource
 {
     protected static ?string $model = AboutMe::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $modelLabel = 'About';
+    protected static ?string $navigationGroup = 'Article';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard';
 
     public static function form(Form $form): Form
     {
@@ -24,6 +25,9 @@ class AboutMeResource extends Resource
                 FileUpload::make('image')
                     ->image()
                     ->directory('AboutMe')
+                    ->multiple()
+                    ->minFiles(3)
+                    ->maxFiles(3)
                     ->columnSpanFull()
                     ->required(),
                 TinyEditor::make('content')
@@ -36,20 +40,18 @@ class AboutMeResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('image'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\ImageColumn::make('image')
+                    ->circular()
+                    ->stacked()
+                    ->ring(5),
+                Tables\Columns\TextColumn::make('content')
+                    ->limit(30)
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([

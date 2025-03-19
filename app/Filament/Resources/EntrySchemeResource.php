@@ -13,8 +13,8 @@ use Filament\Tables\Table;
 class EntrySchemeResource extends Resource
 {
     protected static ?string $model = EntryScheme::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Academic';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-check';
 
     public static function form(Form $form): Form
     {

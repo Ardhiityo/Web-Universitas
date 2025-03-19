@@ -14,7 +14,7 @@ use Filament\Tables\Table;
 class HistoryResource extends Resource
 {
     protected static ?string $model = History::class;
-
+    protected static ?string $navigationGroup = 'Information';
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
