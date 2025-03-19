@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rector extends Model
 {
-    //
+    protected $guarded = [];
 }
