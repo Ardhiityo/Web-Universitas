@@ -11,7 +11,9 @@ class VisionMission extends Model
     protected function casts()
     {
         return [
-            'image' => 'array'
+            'image' => 'array',
+            'vision' => 'array',
+            'mission' => 'array'
         ];
     }
 }

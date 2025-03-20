@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('vision_missions', function (Blueprint $table) {
             $table->id();
+            $table->text('vision_tagline');
             $table->text('vision');
             $table->text('mission');
             $table->string('image');

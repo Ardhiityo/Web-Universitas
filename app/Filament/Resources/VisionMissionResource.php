@@ -2,14 +2,16 @@
 
 namespace App\Filament\Resources;
 
-use AmidEsfahani\FilamentTinyEditor\TinyEditor;
-use App\Filament\Resources\VisionMissionResource\Pages;
-use App\Models\VisionMission;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Models\VisionMission;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use App\Filament\Resources\VisionMissionResource\Pages;
 
 class VisionMissionResource extends Resource
 {
@@ -21,11 +23,21 @@ class VisionMissionResource extends Resource
     {
         return $form
             ->schema([
-                TinyEditor::make('vision')
-                    ->required()
+                TextInput::make('vision_tagline')
+                    ->required(),
+                Repeater::make('vision')
+                    ->schema([
+                        TextInput::make('title')
+                            ->required(),
+                        Textarea::make('point')
+                            ->required(),
+                    ])
                     ->columnSpanFull(),
-                TinyEditor::make('mission')
-                    ->required()
+                Repeater::make('mission')
+                    ->schema([
+                        Textarea::make('mission')
+                            ->required(),
+                    ])
                     ->columnSpanFull(),
                 Forms\Components\FileUpload::make('image')
                     ->image()
@@ -42,12 +54,8 @@ class VisionMissionResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('vision')
-                    ->limit(30)
-                    ->wrap(),
-                Tables\Columns\TextColumn::make('mission')
-                    ->limit(30)
-                    ->wrap(),
+                Tables\Columns\TextColumn::make('vision_tagline')
+                    ->limit(30),
                 Tables\Columns\ImageColumn::make('image')
                     ->circular()
                     ->stacked()

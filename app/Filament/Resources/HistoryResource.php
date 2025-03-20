@@ -2,15 +2,15 @@
 
 namespace App\Filament\Resources;
 
-use AmidEsfahani\FilamentTinyEditor\TinyEditor;
-use App\Filament\Resources\HistoryResource\Pages;
-use App\Models\History;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\TextColumn;
+use App\Models\History;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Textarea;
+use Filament\Tables\Columns\TextColumn;
+use App\Filament\Resources\HistoryResource\Pages;
 
 class HistoryResource extends Resource
 {
@@ -27,7 +27,7 @@ class HistoryResource extends Resource
                     ->directory('History')
                     ->columnSpanFull()
                     ->required(),
-                TinyEditor::make('content')
+                Textarea::make('content')
                     ->required()
                     ->columnSpanFull()
             ]);

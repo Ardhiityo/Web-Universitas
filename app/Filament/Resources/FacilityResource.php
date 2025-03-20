@@ -2,14 +2,14 @@
 
 namespace App\Filament\Resources;
 
-use AmidEsfahani\FilamentTinyEditor\TinyEditor;
-use App\Filament\Resources\FacilityResource\Pages;
-use App\Models\Facility;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
+use App\Models\Facility;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Textarea;
+use App\Filament\Resources\FacilityResource\Pages;
 
 class FacilityResource extends Resource
 {
@@ -26,7 +26,7 @@ class FacilityResource extends Resource
                     ->directory('Facility')
                     ->columnSpanFull()
                     ->required(),
-                TinyEditor::make('content')
+                Textarea::make('content')
                     ->required()
                     ->columnSpanFull(),
             ]);

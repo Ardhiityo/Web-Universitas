@@ -7,8 +7,8 @@ use App\Models\AboutMe;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\FileUpload;
-use AmidEsfahani\FilamentTinyEditor\TinyEditor;
 use App\Filament\Resources\AboutMeResource\Pages;
 
 class AboutMeResource extends Resource
@@ -30,7 +30,7 @@ class AboutMeResource extends Resource
                     ->maxFiles(3)
                     ->columnSpanFull()
                     ->required(),
-                TinyEditor::make('content')
+                Textarea::make('content')
                     ->required()
                     ->columnSpanFull()
             ]);

@@ -2,14 +2,19 @@
 
 namespace App\Filament\Resources;
 
-use AmidEsfahani\FilamentTinyEditor\TinyEditor;
-use App\Filament\Resources\NewsResource\Pages;
-use App\Models\News;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Models\News;
+use Filament\Forms\Components\Textarea;
 use Filament\Tables;
+use Filament\Forms\Set;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
+use Filament\Resources\Resource;
+use Illuminate\Support\Facades\Auth;
+use Filament\Forms\Components\Hidden;
+use App\Filament\Resources\NewsResource\Pages;
+use AmidEsfahani\FilamentTinyEditor\TinyEditor;
 
 class NewsResource extends Resource
 {
@@ -21,23 +26,27 @@ class NewsResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('user_id')
-                    ->relationship('user', 'name')
-                    ->label('Name')
+                Hidden::make('user_id')
+                    ->default(Auth::user()->id)
                     ->required(),
                 Forms\Components\TextInput::make('title')
                     ->required()
+                    ->debounce(3000)
+                    ->afterStateUpdated(function ($state, Set $set) {
+                        return $set('slug', Str::slug($state));
+                    })
                     ->maxLength(255),
                 Forms\Components\TextInput::make('slug')
                     ->unique()
                     ->required()
+                    ->readOnly()
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('image')
                     ->image()
                     ->required()
                     ->directory('News')
                     ->columnSpanFull(),
-                TinyEditor::make('content')
+                Textarea::make('content')
                     ->required()
                     ->columnSpanFull()
             ]);
@@ -48,6 +57,7 @@ class NewsResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('user.name')
+                    ->label('Creator')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('title')
                     ->limit(30)

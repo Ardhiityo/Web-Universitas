@@ -2,13 +2,13 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\StudyProgramResource\Pages;
-use App\Models\StudyProgram;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Models\StudyProgram;
+use Filament\Resources\Resource;
+use App\Filament\Resources\StudyProgramResource\Pages;
 
 class StudyProgramResource extends Resource
 {

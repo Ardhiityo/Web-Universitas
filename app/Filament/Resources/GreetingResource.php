@@ -2,14 +2,14 @@
 
 namespace App\Filament\Resources;
 
-use AmidEsfahani\FilamentTinyEditor\TinyEditor;
-use App\Filament\Resources\GreetingResource\Pages;
-use App\Models\Greeting;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
+use App\Models\Greeting;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Textarea;
+use App\Filament\Resources\GreetingResource\Pages;
 
 class GreetingResource extends Resource
 {
@@ -26,7 +26,7 @@ class GreetingResource extends Resource
                     ->directory('Greeting')
                     ->columnSpanFull()
                     ->required(),
-                TinyEditor::make('content')
+                Textarea::make('content')
                     ->required()
                     ->columnSpanFull(),
             ]);

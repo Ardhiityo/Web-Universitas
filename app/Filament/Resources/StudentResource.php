@@ -2,20 +2,13 @@
 
 namespace App\Filament\Resources;
 
-use Closure;
 use Filament\Forms;
 use Filament\Tables;
 use App\Models\Student;
-use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
-use Filament\Forms\Components\Select;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Forms\Components\TextInput;
-use Filament\Tables\Columns\ImageColumn;
-use Filament\Forms\Components\FileUpload;
 use App\Filament\Resources\StudentResource\Pages;
 
 class StudentResource extends Resource

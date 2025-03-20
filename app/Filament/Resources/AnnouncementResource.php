@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
-use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
@@ -12,7 +11,7 @@ use Illuminate\Support\Str;
 use App\Models\Announcement;
 use Filament\Resources\Resource;
 use Illuminate\Support\Facades\Auth;
-use AmidEsfahani\FilamentTinyEditor\TinyEditor;
+use Filament\Forms\Components\Textarea;
 use App\Filament\Resources\AnnouncementResource\Pages;
 
 class AnnouncementResource extends Resource
@@ -41,7 +40,7 @@ class AnnouncementResource extends Resource
                     ->unique()
                     ->required()
                     ->maxLength(255),
-                TinyEditor::make('content')
+                Textarea::make('content')
                     ->required()
                     ->columnSpanFull(),
             ]);
