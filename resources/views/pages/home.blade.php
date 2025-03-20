@@ -74,7 +74,8 @@
                     <span class="text-secondary-pink">berakhlak</span>
                 </p>
                 <p class="text-base font-semibold sm:text-lg text-xneutral-200 font-montserrat">
-                    {{ $aboutMe->content ?? 'Universitas yang berfokus pada integritas, ilmu pengetahuan, dan pengembangan karakter untuk membentuk pemimpin masa depan.' }}
+                    Universitas yang berfokus pada integritas, ilmu pengetahuan, dan
+                    pengembangan karakter untuk membentuk pemimpin masa depan.
                 </p>
                 <a href="#"
                     class="px-6 py-[14px] font-montserrat text-neutral-0 bg-white border w-fit text-lg font-semibold border-primary-200 text-primary-200 rounded-full flex gap-[10px]"><span>Tentang
@@ -84,16 +85,18 @@
             </div>
             <div class="relative">
                 <div class="grid grid-cols-2 gap-6 w-fit">
-                    @forelse ($aboutMe->image ?? [] as $key => $image)
-                        <img src="{{ asset('storage/' . $image) }}" alt="Illustration 1" />
-                    @empty
+                    @empty($aboutMe->image)
                         <img src="{{ asset('images/about-1.png') }}" alt="Illustration 1" />
                         <img src="{{ asset('images/about-2.png') }}" alt="Illustration 2" />
-                        <img src="{{ asset('images/about-3.png') }}" alt="Illustration 3" />
-                    @endforelse
+                        <img class="col-span-2" src="{{ asset('images/about-3.png') }}" alt="Illustration 3" />
+                    @else
+                        <img src="{{ asset('storage/' . $aboutMe->image[0]) }}" alt="Illustration 1" />
+                        <img src="{{ asset('storage/' . $aboutMe->image[1]) }}" alt="Illustration 2" />
+                        <img class="col-span-2" src="{{ asset('storage/' . $aboutMe->image[2]) }}" alt="Illustration 3" />
+                    @endempty
                 </div>
-                <img class="absolute -bottom-32 -left-36 -z-10" src="{{ asset('/images/elipse-1.svg') }}" alt="elipse-1" />
-                <img class="absolute -top-24 -right-16 -z-10" src="{{ asset('/images/elipse-2.svg') }}" alt="elipse-2" />
+                <img class="absolute -bottom-32 -left-36 -z-10" src="{{ asset('images/elipse-1.svg') }}" alt="" />
+                <img class="absolute -top-24 -right-16 -z-10" src="{{ asset('images/elipse-2.svg') }}" alt="" />
             </div>
         </div>
     </section>
@@ -122,7 +125,7 @@
             </div>
         </div>
         <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-            @foreach ($allNews as $news)
+            @foreach ($latestNews as $news)
                 <div class="p-[14px] rounded-[20px] border border-xneutral-100 bg-xneutral-0">
                     <div class="max-h-[214px] rounded-2xl overflow-hidden mb-5">
                         <img src="{{ asset('storage/' . $news->image) }}" alt="Foto Berita" />

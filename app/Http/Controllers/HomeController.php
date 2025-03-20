@@ -25,7 +25,7 @@ class HomeController extends Controller
 
     public function home()
     {
-        $allNews = $this->newsRepository->getAllNews();
+        $latestNews = $this->newsRepository->getTheLatestNews();
         $footer = $this->footerRepository->getFooter();
         $aboutMe = $this->aboutMeRepository->getAboutMe();
         $rectors = $this->rectorRepository->getAllRectors();
@@ -39,7 +39,7 @@ class HomeController extends Controller
                 'footer',
                 'announcements',
                 'rectors',
-                'allNews',
+                'latestNews',
                 'aboutMe',
                 'cooperations',
                 'categories'
