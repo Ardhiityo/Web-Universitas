@@ -8,8 +8,8 @@ class News extends Model
 {
     protected $guarded = [];
 
-    public function user()
+    public function admin()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Admin::class);
     }
 }

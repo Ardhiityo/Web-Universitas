@@ -125,12 +125,12 @@
             </div>
         </div>
         <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-            @foreach ($latestNews as $news)
+            @forelse ($latestNews as $news)
                 <div class="p-[14px] rounded-[20px] border border-xneutral-100 bg-xneutral-0">
                     <div class="max-h-[214px] rounded-2xl overflow-hidden mb-5">
                         <img src="{{ asset('storage/' . $news->image) }}" alt="Foto Berita" />
                     </div>
-                    <a href="berita.html"
+                    <a href="{{ route('news', ['slug' => $news->slug]) }}"
                         class="text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">
                         {{ $news->title }}
                     </a>
@@ -138,7 +138,20 @@
                         {{ date_format($news->created_at, 'd/m/y') }}
                     </p>
                 </div>
-            @endforeach
+            @empty
+                <div class="p-[14px] rounded-[20px] border border-xneutral-100 bg-xneutral-0">
+                    <div class="max-h-[214px] rounded-2xl overflow-hidden mb-5">
+                        <img src="{{ asset('images/berita-1.png') }}" alt="Foto Berita" />
+                    </div>
+                    <a href="{{ route('home') }}"
+                        class="text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">
+                        No content available
+                    </a>
+                    <p class="text-xs font-semibold font-montserrat sm:text-sm text-xneutral-200">
+                        No content available
+                    </p>
+                </div>
+            @endforelse
         </div>
         <div class="absolute top-12 -left-24 -z-10">
             <img src="{{ asset('images/elipse-1.svg') }}" alt="elipse1" />
@@ -198,7 +211,7 @@
                 </div>
             </div>
             <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-                @foreach ($latestAnnouncements as $announcement)
+                @forelse ($latestAnnouncements as $announcement)
                     <div class="py-[26px] px-7 rounded-[20px] border border-xneutral-100 bg-white">
                         <a href=""
                             class="mb-4 text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">
@@ -211,7 +224,20 @@
                             {{ date_format($announcement->created_at, 'd/m/y') }}
                         </p>
                     </div>
-                @endforeach
+                @empty
+                    <div class="py-[26px] px-7 rounded-[20px] border border-xneutral-100 bg-white">
+                        <a href=""
+                            class="mb-4 text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">
+                            No content available
+                        </a>
+                        <p class="font-montserrat text-xs sm:text-sm font-semibold text-xneutral-200 mb-1.5">
+                            No content available
+                        </p>
+                        <p class="text-xs font-semibold font-montserrat text-xneutral-200">
+                            No content available
+                        </p>
+                    </div>
+                @endforelse
             </div>
         </div>
     </section>

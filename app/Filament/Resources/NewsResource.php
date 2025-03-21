@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Filament\Forms\Components\Hidden;
 use App\Filament\Resources\NewsResource\Pages;
 use AmidEsfahani\FilamentTinyEditor\TinyEditor;
+use Filament\Forms\Components\Select;
 
 class NewsResource extends Resource
 {
@@ -26,8 +27,10 @@ class NewsResource extends Resource
     {
         return $form
             ->schema([
-                Hidden::make('user_id')
-                    ->default(Auth::user()->id)
+                Select::make('admin_id')
+                    ->label('Creator')
+                    ->relationship('admin', 'name')
+                    ->columnSpanFull()
                     ->required(),
                 Forms\Components\TextInput::make('title')
                     ->required()
@@ -56,7 +59,7 @@ class NewsResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user.name')
+                Tables\Columns\TextColumn::make('admin.name')
                     ->label('Creator')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('title')

@@ -24,7 +24,6 @@ class AdminResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('nip')
-                    ->numeric()
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('job_title')

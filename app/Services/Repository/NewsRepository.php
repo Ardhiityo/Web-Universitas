@@ -19,4 +19,13 @@ class NewsRepository implements NewsService
     {
         return News::latest()->take(3)->get();
     }
+
+    public function getNewsBySlug(string $slug)
+    {
+        try {
+            return News::where('slug', $slug)->firstOrFail();
+        } catch (\Throwable $th) {
+            return null;
+        }
+    }
 }

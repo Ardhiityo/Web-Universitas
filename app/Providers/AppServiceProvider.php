@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Carbon;
 use App\Services\Interface\NewsService;
 use Illuminate\Support\ServiceProvider;
 use App\Services\Interface\FooterService;
@@ -18,10 +19,10 @@ use App\Services\Interface\CooperationService;
 use App\Services\Repository\AboutMeRepository;
 use App\Services\Repository\HistoryRepository;
 use App\Services\Interface\AnnouncementService;
-use App\Services\Interface\HumanResourceService;
 use App\Services\Repository\CategoryRepository;
 use App\Services\Repository\FacilityRepository;
 use App\Services\Repository\GreetingRepository;
+use App\Services\Interface\HumanResourceService;
 use App\Services\Interface\VisionMissionService;
 use App\Services\Repository\CooperationRepository;
 use App\Services\Repository\AnnouncementRepository;
@@ -54,6 +55,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Carbon::setLocale('id');
     }
 }

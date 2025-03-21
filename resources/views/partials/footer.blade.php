@@ -2,24 +2,28 @@
     <footer class="w-full pt-20 mt-14">
         <div class="container grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-3 lg:gap-36">
             <div>
-                <img class="mb-10" src="{{ asset('storage/' . $footer->image) }}" alt="Logo B-Universitas" />
+                @if ($footer->image ?? false)
+                    <img class="mb-10" src="{{ asset('storage/' . $footer->image) }}" alt="Logo B-Universitas" />
+                @else
+                    <img class="mb-10" src="{{ asset('images/B-Uni.png') }}" alt="Logo B-Universitas" />
+                @endif
                 <p class="mb-6 text-sm text-medium text-xneutral-200 font-poppins">
                     Lihat Perkembangan kami diakun sosial media
                 </p>
                 <div class="flex items-center gap-11">
-                    <a href="{{ $footer->instagram }}"
+                    <a href="{{ $footer->instagram ?? 'www.instagram.com' }}"
                         class="grid w-8 h-8 rounded-full place-content-center bg-primary-200">
                         <i class="text-lg bi bi-instagram text-xneutral-0"></i>
                     </a>
-                    <a href="{{ $footer->youtube }}"
+                    <a href="{{ $footer->youtube ?? 'www.youtube.com' }}"
                         class="grid w-8 h-8 rounded-full place-content-center bg-primary-200">
                         <i class="text-lg bi bi-youtube text-xneutral-0"></i>
                     </a>
-                    <a href="{{ $footer->linkedin }}"
+                    <a href="{{ $footer->linkedin ?? 'www.linkedin.com' }}"
                         class="grid w-8 h-8 rounded-full place-content-center bg-primary-200">
                         <i class="text-sm bi bi-linkedin text-xneutral-0"></i>
                     </a>
-                    <a href="{{ $footer->facebook }}"
+                    <a href="{{ $footer->facebook ?? 'www.facebook.com' }}"
                         class="grid w-8 h-8 rounded-full place-content-center bg-primary-200">
                         <i class="text-lg bi bi-facebook text-xneutral-0"></i>
                     </a>
@@ -33,19 +37,19 @@
                     <div class="flex gap-4">
                         <i class="bi bi-geo-alt-fill text-xneutral-200"></i>
                         <p class="text-sm font-poppins text-xneutral-200">
-                            {{ $footer->address }}
+                            {{ $footer->address ?? 'no available address' }}
                         </p>
                     </div>
                     <div class="flex gap-4">
                         <i class="bi bi-envelope text-xneutral-200"></i>
                         <p class="text-sm font-poppins text-xneutral-200">
-                            {{ $footer->email }}
+                            {{ $footer->email ?? 'no available email' }}
                         </p>
                     </div>
                     <div class="flex gap-4">
                         <i class="bi bi-whatsapp text-xneutral-200"></i>
                         <p class="text-sm font-poppins text-xneutral-200">
-                            {{ $footer->whatsapp }}
+                            {{ $footer->whatsapp ?? 'no available whatsapp' }}
                         </p>
                     </div>
                 </div>
