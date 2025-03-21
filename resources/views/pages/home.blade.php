@@ -198,7 +198,7 @@
                 </div>
             </div>
             <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-                @foreach ($announcements as $announcement)
+                @foreach ($latestAnnouncements as $announcement)
                     <div class="py-[26px] px-7 rounded-[20px] border border-xneutral-100 bg-white">
                         <a href=""
                             class="mb-4 text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">

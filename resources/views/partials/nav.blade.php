@@ -23,17 +23,18 @@
                                         Misi</a>
                                 </li>
                                 <li>
-                                    <a href="sambutan.html" class="block w-full py-1 pl-2 pr-8">Sambutan Rektor</a>
+                                    <a href="{{ route('greeting') }}" class="block w-full py-1 pl-2 pr-8">Sambutan
+                                        Rektor</a>
                                 </li>
                                 <li>
-                                    <a href="fasilitas.html" class="block w-full py-1 pl-2 pr-8">Fasilitas</a>
+                                    <a href="{{ route('facility') }}" class="block w-full py-1 pl-2 pr-8">Fasilitas</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </li>
                 <li>
-                    <a href="sdm.html" class="font-semibold">SDM</a>
+                    <a href="{{ route('humanResource') }}" class="font-semibold">SDM</a>
                 </li>
                 <li class="relative flex items-center h-full group">
                     <div class="flex items-center gap-1.5 x-dropdown-button cursor-pointer peer">
@@ -64,7 +65,7 @@
                     </div>
                 </li>
                 <li>
-                    <a href="pengumuman.html" class="font-semibold">Pengumuman</a>
+                    <a href="{{ route('announcement') }}" class="font-semibold">Pengumuman</a>
                 </li>
             </ul>
             <div class="hidden md:flex">

@@ -19,4 +19,9 @@ class AnnouncementRepository implements AnnouncementService
     {
         return Announcement::all();
     }
+
+    public function getTheLatestAnnouncements()
+    {
+        return Announcement::latest()->take(3)->get();
+    }
 }

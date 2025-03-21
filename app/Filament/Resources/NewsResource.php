@@ -60,10 +60,7 @@ class NewsResource extends Resource
                     ->label('Creator')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('title')
-                    ->limit(30)
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->limit(30)
+                    ->wrap()
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('image')
                     ->circular(),
@@ -72,7 +69,6 @@ class NewsResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([

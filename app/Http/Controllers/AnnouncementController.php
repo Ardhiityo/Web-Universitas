@@ -2,24 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Interface\AnnouncementService;
 use App\Services\Interface\FooterService;
 use App\Services\Interface\CategoryService;
-use App\Services\Interface\VisionMissionService;
 
-class VisionMissionController extends Controller
+class AnnouncementController extends Controller
 {
     public function __construct(
         private FooterService $footerRepository,
         private CategoryService $categoryRepository,
-        private VisionMissionService $visionMissionRepository
+        private AnnouncementService $announcementRepository
     ) {}
 
-    public function visionMission()
+    public function announcement()
     {
         $footer = $this->footerRepository->getFooter();
         $categories = $this->categoryRepository->getAllCategories();
-        $visionMission = $this->visionMissionRepository->getVisionMission();
+        $announcements = $this->announcementRepository->getAllAnnouncements();
 
-        return view('pages.vision-mission', compact('categories', 'visionMission', 'footer'));
+        return view('pages.announcement', compact(
+            'footer',
+            'categories',
+            'announcements'
+        ));
     }
 }

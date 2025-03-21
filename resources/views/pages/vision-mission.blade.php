@@ -63,11 +63,29 @@
                     </p>
                 </div>
                 <div>
-                    @empty($visionMission->image)
-                        <img src="{{ asset('images/visi-1.png') }}" alt="Inovatif" />
-                    @else
-                        <img src="{{ asset('storage/' . $visionMission->image[$key]) }}" alt="Inovatif" />
-                    @endempty
+                    <img src="{{ asset('images/visi-2.png') }}" alt="Inovatif" />
+                </div>
+                <div class="p-[30px]">
+                    <h2 class="text-base font-semibold sm:text-lg text-xneutral-400 font-montserrat">
+                        No content available
+                    </h2>
+                    <p class="mt-4 text-xs font-medium font-montserrat text-xneutral-200 sm:text-sm">
+                        No content available
+                    </p>
+                </div>
+                <div>
+                    <img src="{{ asset('images/visi-1.png') }}" alt="Inovatif" />
+                </div>
+                <div class="p-[30px]">
+                    <h2 class="text-base font-semibold sm:text-lg text-xneutral-400 font-montserrat">
+                        No content available
+                    </h2>
+                    <p class="mt-4 text-xs font-medium font-montserrat text-xneutral-200 sm:text-sm">
+                        No content available
+                    </p>
+                </div>
+                <div>
+                    <img src="{{ asset('images/visi-3.png') }}" alt="Inovatif" />
                 </div>
             @endforelse
         </div>

@@ -39,7 +39,7 @@ class HistoryResource extends Resource
             ->columns([
                 TextColumn::make('content')
                     ->html()
-                    ->limit(30),
+                    ->wrap(),
                 Tables\Columns\ImageColumn::make('image')
                     ->circular()
             ])
@@ -47,7 +47,6 @@ class HistoryResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([

@@ -54,21 +54,17 @@ class AnnouncementResource extends Resource
                     ->label('Creator')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('title')
-                    ->limit(15)
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->limit(15)
+                    ->wrap()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('content')
-                    ->limit(15)
                     ->html()
+                    ->wrap()
                     ->sortable()
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([

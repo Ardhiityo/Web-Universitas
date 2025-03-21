@@ -4,22 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Services\Interface\FooterService;
 use App\Services\Interface\CategoryService;
-use App\Services\Interface\VisionMissionService;
+use App\Services\Interface\GreetingService;
 
-class VisionMissionController extends Controller
+class GreetingController extends Controller
 {
     public function __construct(
         private FooterService $footerRepository,
         private CategoryService $categoryRepository,
-        private VisionMissionService $visionMissionRepository
+        private GreetingService $greetingRepository
     ) {}
 
-    public function visionMission()
+    public function greeting()
     {
         $footer = $this->footerRepository->getFooter();
         $categories = $this->categoryRepository->getAllCategories();
-        $visionMission = $this->visionMissionRepository->getVisionMission();
+        $greeting = $this->greetingRepository->getGreeting();
 
-        return view('pages.vision-mission', compact('categories', 'visionMission', 'footer'));
+        return view('pages.greeting', compact(
+            'greeting',
+            'footer',
+            'categories'
+        ));
     }
 }

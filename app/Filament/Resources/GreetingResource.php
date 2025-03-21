@@ -2,13 +2,13 @@
 
 namespace App\Filament\Resources;
 
+use AmidEsfahani\FilamentTinyEditor\TinyEditor;
 use Filament\Forms;
 use Filament\Tables;
 use Filament\Forms\Form;
 use App\Models\Greeting;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
-use Filament\Forms\Components\Textarea;
 use App\Filament\Resources\GreetingResource\Pages;
 
 class GreetingResource extends Resource
@@ -26,7 +26,7 @@ class GreetingResource extends Resource
                     ->directory('Greeting')
                     ->columnSpanFull()
                     ->required(),
-                Textarea::make('content')
+                TinyEditor::make('content')
                     ->required()
                     ->columnSpanFull(),
             ]);
@@ -40,13 +40,12 @@ class GreetingResource extends Resource
                     ->circular(),
                 Tables\Columns\TextColumn::make('content')
                     ->html()
-                    ->limit(80)
+                    ->wrap()
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([

@@ -7,4 +7,5 @@ use App\Models\Announcement;
 interface AnnouncementService
 {
     public function getAllAnnouncements();
+    public function getTheLatestAnnouncements();
 }

@@ -2,14 +2,17 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
-use Filament\Tables;
-use Filament\Forms\Form;
-use App\Models\Facility;
-use Filament\Tables\Table;
-use Filament\Resources\Resource;
-use Filament\Forms\Components\Textarea;
+use AmidEsfahani\FilamentTinyEditor\TinyEditor;
 use App\Filament\Resources\FacilityResource\Pages;
+use App\Filament\Resources\FacilityResource\RelationManagers;
+use App\Models\Facility;
+use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class FacilityResource extends Resource
 {
@@ -23,10 +26,9 @@ class FacilityResource extends Resource
             ->schema([
                 Forms\Components\FileUpload::make('image')
                     ->image()
-                    ->directory('Facility')
                     ->columnSpanFull()
                     ->required(),
-                Textarea::make('content')
+                TinyEditor::make('content')
                     ->required()
                     ->columnSpanFull(),
             ]);
@@ -40,13 +42,12 @@ class FacilityResource extends Resource
                     ->circular(),
                 Tables\Columns\TextColumn::make('content')
                     ->html()
-                    ->limit(50)
+                    ->wrap()
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([

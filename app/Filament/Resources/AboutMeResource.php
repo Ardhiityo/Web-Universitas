@@ -46,13 +46,12 @@ class AboutMeResource extends Resource
                     ->ring(5),
                 Tables\Columns\TextColumn::make('content')
                     ->html()
-                    ->limit(30)
+                    ->wrap()
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([

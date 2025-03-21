@@ -55,7 +55,7 @@ class VisionMissionResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('vision_tagline')
-                    ->limit(30),
+                    ->wrap(),
                 Tables\Columns\ImageColumn::make('image')
                     ->circular()
                     ->stacked()

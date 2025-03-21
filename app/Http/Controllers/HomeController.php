@@ -29,7 +29,7 @@ class HomeController extends Controller
         $footer = $this->footerRepository->getFooter();
         $aboutMe = $this->aboutMeRepository->getAboutMe();
         $rectors = $this->rectorRepository->getAllRectors();
-        $announcements = $this->announcementRepository->getAllAnnouncements();
+        $latestAnnouncements = $this->announcementRepository->getTheLatestAnnouncements();
         $cooperations = $this->cooperationRepository->getAllCooperations();
         $categories = $this->categoryRepository->getAllCategories();
 
@@ -37,7 +37,7 @@ class HomeController extends Controller
             'pages.home',
             compact(
                 'footer',
-                'announcements',
+                'latestAnnouncements',
                 'rectors',
                 'latestNews',
                 'aboutMe',
