@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'B-University - Announcement')
+@section('title', 'B-University - News')
 
 @section('content')
     <article class="container mt-28">

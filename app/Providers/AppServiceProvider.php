@@ -19,6 +19,7 @@ use App\Services\Interface\CooperationService;
 use App\Services\Repository\AboutMeRepository;
 use App\Services\Repository\HistoryRepository;
 use App\Services\Interface\AnnouncementService;
+use App\Services\Interface\RegistrationService;
 use App\Services\Repository\CategoryRepository;
 use App\Services\Repository\FacilityRepository;
 use App\Services\Repository\GreetingRepository;
@@ -26,6 +27,7 @@ use App\Services\Interface\HumanResourceService;
 use App\Services\Interface\VisionMissionService;
 use App\Services\Repository\CooperationRepository;
 use App\Services\Repository\AnnouncementRepository;
+use App\Services\Repository\RegistrationRepository;
 use App\Services\Repository\HumanResourceRepository;
 use App\Services\Repository\VisionMissionRepository;
 
@@ -44,6 +46,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(CategoryService::class, CategoryRepository::class);
         $this->app->bind(GreetingService::class, GreetingRepository::class);
         $this->app->bind(FacilityService::class, FacilityRepository::class);
+        $this->app->bind(RegistrationService::class, RegistrationRepository::class);
         $this->app->bind(CooperationService::class, CooperationRepository::class);
         $this->app->bind(HumanResourceService::class, HumanResourceRepository::class);
         $this->app->bind(AnnouncementService::class, AnnouncementRepository::class);

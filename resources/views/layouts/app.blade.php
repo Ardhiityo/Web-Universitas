@@ -1,4 +1,5 @@
 @include('partials.header')
+@include('sweetalert::alert')
 
 <!-- NAVIGATION -->
 @include('partials.nav')

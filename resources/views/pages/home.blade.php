@@ -53,9 +53,13 @@
             Bekerjasama Dengan
         </h3>
         <div class="flex gap-16 overflow-x-auto">
-            @foreach ($cooperations as $cooperation)
+            @forelse ($cooperations as $cooperation)
                 <img class="w-12 md:w-fit" src="{{ asset('storage/' . $cooperation->image) }}" alt="logo" />
-            @endforeach
+            @empty
+                <img class="w-12 md:w-fit" src="{{ asset('images/Waseda.png') }}" alt="logo" />
+                <img class="w-12 md:w-fit" src="{{ asset('images/TIT.png') }}" alt="logo" />
+                <img class="w-12 md:w-fit" src="{{ asset('images/mit.png') }}" alt="logo" />
+            @endforelse
         </div>
     </div>
     {{-- END COOPERATION SECTION --}}
@@ -85,32 +89,130 @@
             </div>
             <div class="relative">
                 <div class="grid grid-cols-2 gap-6 w-fit">
-                    @empty($aboutMe->image)
-                        <img src="{{ asset('images/about-1.png') }}" alt="Illustration 1" />
-                        <img src="{{ asset('images/about-2.png') }}" alt="Illustration 2" />
-                        <img class="col-span-2" src="{{ asset('images/about-3.png') }}" alt="Illustration 3" />
-                    @else
-                        <img src="{{ asset('storage/' . $aboutMe->image[0]) }}" alt="Illustration 1" />
-                        <img src="{{ asset('storage/' . $aboutMe->image[1]) }}" alt="Illustration 2" />
-                        <img class="col-span-2" src="{{ asset('storage/' . $aboutMe->image[2]) }}" alt="Illustration 3" />
-                    @endempty
-                </div>
-                <img class="absolute -bottom-32 -left-36 -z-10" src="{{ asset('images/elipse-1.svg') }}" alt="" />
-                <img class="absolute -top-24 -right-16 -z-10" src="{{ asset('images/elipse-2.svg') }}" alt="" />
+                @empty($aboutMe->image)
+                    <img src="{{ asset('images/about-1.png') }}" alt="Illustration 1" />
+                    <img src="{{ asset('images/about-2.png') }}" alt="Illustration 2" />
+                    <img class="col-span-2" src="{{ asset('images/about-3.png') }}" alt="Illustration 3" />
+                @else
+                    <img src="{{ asset('storage/' . $aboutMe->image[0]) }}" alt="Illustration 1" />
+                    <img src="{{ asset('storage/' . $aboutMe->image[1]) }}" alt="Illustration 2" />
+                    <img class="col-span-2" src="{{ asset('storage/' . $aboutMe->image[2]) }}" alt="Illustration 3" />
+                @endempty
             </div>
+            <img class="absolute -bottom-32 -left-36 -z-10" src="{{ asset('images/elipse-1.svg') }}" alt="" />
+            <img class="absolute -top-24 -right-16 -z-10" src="{{ asset('images/elipse-2.svg') }}" alt="" />
         </div>
-    </section>
-    <!-- END OF ABOUT SECTION -->
+    </div>
+</section>
+<!-- END OF ABOUT SECTION -->
 
-    <!-- NEWS SECTION -->
-    <section class="container relative">
+<!-- NEWS SECTION -->
+<section class="container relative">
+    <div class="flex items-center justify-between mb-10">
+        <div>
+            <h3 class="text-xl font-semibold sm:text-2xl font-montserrat text-xneutral-400">
+                Berita terkini untuk Anda
+            </h3>
+            <p class="text-sm font-semibold sm:text-base font-montserrat text-xneutral-200">
+                Temukan berita terbaru hari ini
+            </p>
+        </div>
+        <div>
+            <button
+                class="w-10 h-10 transition-all rounded-full text-xneutral-400 hover:text-xneutral-0 bg-xneutral-0 hover:bg-xneutral-400">
+                <i class="text-4xl bi bi-arrow-left-short"></i>
+            </button>
+            <button
+                class="w-10 h-10 transition-all rounded-full text-xneutral-400 hover:text-xneutral-0 bg-xneutral-0 hover:bg-xneutral-400">
+                <i class="text-4xl bi bi-arrow-right-short"></i>
+            </button>
+        </div>
+    </div>
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+        @forelse ($latestNews as $news)
+            <div class="p-[14px] rounded-[20px] border border-xneutral-100 bg-xneutral-0">
+                <div class="max-h-[214px] rounded-2xl overflow-hidden mb-5">
+                    <img src="{{ asset('storage/' . $news->image) }}" alt="Foto Berita" />
+                </div>
+                <a href="{{ route('news', ['slug' => $news->slug]) }}"
+                    class="text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">
+                    {{ $news->title }}
+                </a>
+                <p class="text-xs font-semibold font-montserrat sm:text-sm text-xneutral-200">
+                    {{ date_format($news->created_at, 'd/m/y') }}
+                </p>
+            </div>
+        @empty
+            <div class="p-[14px] rounded-[20px] border border-xneutral-100 bg-xneutral-0">
+                <div class="max-h-[214px] rounded-2xl overflow-hidden mb-5">
+                    <img src="{{ asset('images/berita-1.png') }}" alt="Foto Berita" />
+                </div>
+                <a href="{{ route('home') }}"
+                    class="text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">
+                    No content available
+                </a>
+                <p class="text-xs font-semibold font-montserrat sm:text-sm text-xneutral-200">
+                    No content available
+                </p>
+            </div>
+        @endforelse
+    </div>
+    <div class="absolute top-12 -left-24 -z-10">
+        <img src="{{ asset('images/elipse-1.svg') }}" alt="elipse1" />
+    </div>
+</section>
+<!-- END OF NEWS SECTION -->
+
+<!-- RECTOR SECTION -->
+<section class="container mt-28">
+    <div class="space-y-2 text-center">
+        <h3 class="text-xl font-semibold font-montserrat text-xneutral-400 sm:text-2xl">
+            Rektorat B-Universitas
+        </h3>
+        <p class="text-sm font-semibold font-montserrat sm:text-base text-xneutral-200">
+            Berkomitmen untuk meningkatkan kualitas Pendidikan
+        </p>
+    </div>
+    <div class="grid grid-cols-2 gap-12 text-center lg:grid-cols-4 mt-11">
+        @forelse ($rectors as $rector)
+            <div class="flex flex-col items-center">
+                <div class="mb-6 overflow-hidden rounded-full w-fit">
+                    <img src="{{ asset('storage/' . $rector->image) }}" alt="avatar" />
+                </div>
+                <p class="mb-[2px] text-sm sm:text-base text-xneutral-400 font-semibold font-montserrat">
+                    {{ $rector->name }}
+                </p>
+                <p class="mb-[2px] text-xs sm:text-sm text-xneutral-200 font-semibold font-montserrat">
+                    {{ $rector->job_title }}
+                </p>
+            </div>
+        @empty
+            <div class="flex flex-col items-center">
+                <div class="mb-6 overflow-hidden rounded-full w-fit">
+                    <img src="{{ asset('images/orang-1.png') }}" alt="avatar" />
+                </div>
+                <p class="mb-[2px] text-sm sm:text-base text-xneutral-400 font-semibold font-montserrat">
+                    No content available
+                </p>
+                <p class="mb-[2px] text-xs sm:text-sm text-xneutral-200 font-semibold font-montserrat">
+                    No content available
+                </p>
+            </div>
+        @endforelse
+    </div>
+</section>
+<!-- END OF RECTOR SECTION -->
+
+<!-- ANNOUNCEMENT SECTION -->
+<section class="w-full mt-28 x-announcement">
+    <div class="container pb-16 pt-9">
         <div class="flex items-center justify-between mb-10">
             <div>
-                <h3 class="text-xl font-semibold sm:text-2xl font-montserrat text-xneutral-400">
-                    Berita terkini untuk Anda
+                <h3 class="text-xl font-semibold sm:text-2xl font-montserrat text-xneutral-0">
+                    Pengumuman
                 </h3>
-                <p class="text-sm font-semibold sm:text-base font-montserrat text-xneutral-200">
-                    Temukan berita terbaru hari ini
+                <p class="text-sm font-semibold font-montserrat sm:text-base text-xneutral-0">
+                    Dapatkan pengumuman terbaru
                 </p>
             </div>
             <div>
@@ -125,125 +227,39 @@
             </div>
         </div>
         <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-            @forelse ($latestNews as $news)
-                <div class="p-[14px] rounded-[20px] border border-xneutral-100 bg-xneutral-0">
-                    <div class="max-h-[214px] rounded-2xl overflow-hidden mb-5">
-                        <img src="{{ asset('storage/' . $news->image) }}" alt="Foto Berita" />
-                    </div>
-                    <a href="{{ route('news', ['slug' => $news->slug]) }}"
-                        class="text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">
-                        {{ $news->title }}
+            @forelse ($latestAnnouncements as $announcement)
+                <div class="py-[26px] px-7 rounded-[20px] border border-xneutral-100 bg-white">
+                    <a href=""
+                        class="mb-4 text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">
+                        {{ $announcement->title }}
                     </a>
-                    <p class="text-xs font-semibold font-montserrat sm:text-sm text-xneutral-200">
-                        {{ date_format($news->created_at, 'd/m/y') }}
+                    <p class="font-montserrat text-xs sm:text-sm font-semibold text-xneutral-200 mb-1.5">
+                        {{ $announcement->content }}
+                    </p>
+                    <p class="text-xs font-semibold font-montserrat text-xneutral-200">
+                        {{ date_format($announcement->created_at, 'd/m/y') }}
                     </p>
                 </div>
             @empty
-                <div class="p-[14px] rounded-[20px] border border-xneutral-100 bg-xneutral-0">
-                    <div class="max-h-[214px] rounded-2xl overflow-hidden mb-5">
-                        <img src="{{ asset('images/berita-1.png') }}" alt="Foto Berita" />
-                    </div>
-                    <a href="{{ route('home') }}"
-                        class="text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">
+                <div class="py-[26px] px-7 rounded-[20px] border border-xneutral-100 bg-white">
+                    <a href=""
+                        class="mb-4 text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">
                         No content available
                     </a>
-                    <p class="text-xs font-semibold font-montserrat sm:text-sm text-xneutral-200">
+                    <p class="font-montserrat text-xs sm:text-sm font-semibold text-xneutral-200 mb-1.5">
+                        No content available
+                    </p>
+                    <p class="text-xs font-semibold font-montserrat text-xneutral-200">
                         No content available
                     </p>
                 </div>
             @endforelse
         </div>
-        <div class="absolute top-12 -left-24 -z-10">
-            <img src="{{ asset('images/elipse-1.svg') }}" alt="elipse1" />
-        </div>
-    </section>
-    <!-- END OF NEWS SECTION -->
-
-    <!-- RECTOR SECTION -->
-    <section class="container mt-28">
-        <div class="space-y-2 text-center">
-            <h3 class="text-xl font-semibold font-montserrat text-xneutral-400 sm:text-2xl">
-                Rektorat B-Universitas
-            </h3>
-            <p class="text-sm font-semibold font-montserrat sm:text-base text-xneutral-200">
-                Berkomitmen untuk meningkatkan kualitas Pendidikan
-            </p>
-        </div>
-        <div class="grid grid-cols-2 gap-12 text-center lg:grid-cols-4 mt-11">
-            @foreach ($rectors as $rector)
-                <div class="flex flex-col items-center">
-                    <div class="mb-6 overflow-hidden rounded-full w-fit">
-                        <img src="{{ asset('storage/' . $rector->image) }}" alt="avatar" />
-                    </div>
-                    <p class="mb-[2px] text-sm sm:text-base text-xneutral-400 font-semibold font-montserrat">
-                        {{ $rector->name }}
-                    </p>
-                    <p class="mb-[2px] text-xs sm:text-sm text-xneutral-200 font-semibold font-montserrat">
-                        {{ $rector->job_title }}
-                    </p>
-                </div>
-            @endforeach
-        </div>
-    </section>
-    <!-- END OF RECTOR SECTION -->
-
-    <!-- ANNOUNCEMENT SECTION -->
-    <section class="w-full mt-28 x-announcement">
-        <div class="container pb-16 pt-9">
-            <div class="flex items-center justify-between mb-10">
-                <div>
-                    <h3 class="text-xl font-semibold sm:text-2xl font-montserrat text-xneutral-0">
-                        Pengumuman
-                    </h3>
-                    <p class="text-sm font-semibold font-montserrat sm:text-base text-xneutral-0">
-                        Dapatkan pengumuman terbaru
-                    </p>
-                </div>
-                <div>
-                    <button
-                        class="w-10 h-10 transition-all rounded-full text-xneutral-400 hover:text-xneutral-0 bg-xneutral-0 hover:bg-xneutral-400">
-                        <i class="text-4xl bi bi-arrow-left-short"></i>
-                    </button>
-                    <button
-                        class="w-10 h-10 transition-all rounded-full text-xneutral-400 hover:text-xneutral-0 bg-xneutral-0 hover:bg-xneutral-400">
-                        <i class="text-4xl bi bi-arrow-right-short"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-                @forelse ($latestAnnouncements as $announcement)
-                    <div class="py-[26px] px-7 rounded-[20px] border border-xneutral-100 bg-white">
-                        <a href=""
-                            class="mb-4 text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">
-                            {{ $announcement->title }}
-                        </a>
-                        <p class="font-montserrat text-xs sm:text-sm font-semibold text-xneutral-200 mb-1.5">
-                            {{ $announcement->content }}
-                        </p>
-                        <p class="text-xs font-semibold font-montserrat text-xneutral-200">
-                            {{ date_format($announcement->created_at, 'd/m/y') }}
-                        </p>
-                    </div>
-                @empty
-                    <div class="py-[26px] px-7 rounded-[20px] border border-xneutral-100 bg-white">
-                        <a href=""
-                            class="mb-4 text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">
-                            No content available
-                        </a>
-                        <p class="font-montserrat text-xs sm:text-sm font-semibold text-xneutral-200 mb-1.5">
-                            No content available
-                        </p>
-                        <p class="text-xs font-semibold font-montserrat text-xneutral-200">
-                            No content available
-                        </p>
-                    </div>
-                @endforelse
-            </div>
-        </div>
-    </section>
-    <!-- END OF ANNOUNCEMENT SECTION -->
+    </div>
+</section>
+<!-- END OF ANNOUNCEMENT SECTION -->
 @endsection
 
 @section('footer')
-    @include('partials.home-footer')
+@include('partials.home-footer')
 @endsection

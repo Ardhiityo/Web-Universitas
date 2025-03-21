@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'B-University - Vison Mission')
+@section('title', 'B-University - Vison mission')
 
 @section('content')
     <!-- MAIN SECTION -->

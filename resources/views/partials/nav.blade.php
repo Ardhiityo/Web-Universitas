@@ -69,7 +69,7 @@
                 </li>
             </ul>
             <div class="hidden md:flex">
-                <a href="pendaftaran.html"
+                <a href="{{ route('registration') }}"
                     class="px-6 py-[14px] font-montserrat font-semibold text-xneutral-0 bg-primary-200 rounded-full">Pendaftaran</a>
             </div>
 
