@@ -22,6 +22,7 @@ class StudyProgramResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->required()
+                    ->unique()
                     ->maxLength(255),
                 Forms\Components\Select::make('category_id')
                     ->relationship('category', 'name')

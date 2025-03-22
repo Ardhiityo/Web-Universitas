@@ -28,7 +28,7 @@ class GreetingResource extends Resource
                     ->required(),
                 TinyEditor::make('content')
                     ->required()
-                    ->columnSpanFull(),
+                    ->columnSpanFull()
             ]);
     }
 
@@ -36,11 +36,11 @@ class GreetingResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('image')
-                    ->circular(),
                 Tables\Columns\TextColumn::make('content')
                     ->html()
-                    ->wrap()
+                    ->wrap(),
+                Tables\Columns\ImageColumn::make('image')
+                    ->circular(),
             ])
             ->filters([
                 //

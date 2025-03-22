@@ -2,56 +2,39 @@
 
 namespace App\Providers;
 
+use App\Models\News;
+use App\Models\Admin;
+use App\Models\Footer;
+use App\Models\Rector;
+use App\Models\AboutMe;
+use App\Models\History;
+use App\Models\Lecture;
+use App\Models\Student;
+use App\Models\Facility;
+use App\Models\Greeting;
+use App\Models\Cooperation;
+use App\Models\VisionMission;
 use Illuminate\Support\Carbon;
-use App\Services\Interface\NewsService;
+use App\Observers\NewsObserver;
+use App\Observers\AdminObserver;
+use App\Observers\FooterObserver;
+use App\Observers\RectorObserver;
+use App\Observers\AboutMeObserver;
+use App\Observers\HistoryObserver;
+use App\Observers\LectureObserver;
+use App\Observers\StudentObserver;
+use App\Observers\FacilityObserver;
+use App\Observers\GreetingObserver;
+use App\Observers\CooperationObserver;
 use Illuminate\Support\ServiceProvider;
-use App\Services\Interface\FooterService;
-use App\Services\Interface\RectorService;
-use App\Services\Interface\AboutMeService;
-use App\Services\Interface\HistoryService;
-use App\Services\Interface\CategoryService;
-use App\Services\Interface\FacilityService;
-use App\Services\Interface\GreetingService;
-use App\Services\Repository\NewsRepository;
-use App\Services\Repository\FooterRepository;
-use App\Services\Repository\RectorRepository;
-use App\Services\Interface\CooperationService;
-use App\Services\Repository\AboutMeRepository;
-use App\Services\Repository\HistoryRepository;
-use App\Services\Interface\AnnouncementService;
-use App\Services\Interface\RegistrationService;
-use App\Services\Repository\CategoryRepository;
-use App\Services\Repository\FacilityRepository;
-use App\Services\Repository\GreetingRepository;
-use App\Services\Interface\HumanResourceService;
-use App\Services\Interface\VisionMissionService;
-use App\Services\Repository\CooperationRepository;
-use App\Services\Repository\AnnouncementRepository;
-use App\Services\Repository\RegistrationRepository;
-use App\Services\Repository\HumanResourceRepository;
-use App\Services\Repository\VisionMissionRepository;
+use App\Observers\VisionMissionObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
      */
-    public function register(): void
-    {
-        $this->app->bind(NewsService::class, NewsRepository::class);
-        $this->app->bind(FooterService::class, FooterRepository::class);
-        $this->app->bind(RectorService::class, RectorRepository::class);
-        $this->app->bind(AboutMeService::class, AboutMeRepository::class);
-        $this->app->bind(HistoryService::class, HistoryRepository::class);
-        $this->app->bind(CategoryService::class, CategoryRepository::class);
-        $this->app->bind(GreetingService::class, GreetingRepository::class);
-        $this->app->bind(FacilityService::class, FacilityRepository::class);
-        $this->app->bind(RegistrationService::class, RegistrationRepository::class);
-        $this->app->bind(CooperationService::class, CooperationRepository::class);
-        $this->app->bind(HumanResourceService::class, HumanResourceRepository::class);
-        $this->app->bind(AnnouncementService::class, AnnouncementRepository::class);
-        $this->app->bind(VisionMissionService::class, VisionMissionRepository::class);
-    }
+    public function register(): void {}
 
     /**
      * Bootstrap any application services.
@@ -59,5 +42,19 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Carbon::setLocale('id');
+
+        News::observe(NewsObserver::class);
+        Admin::observe(AdminObserver::class);
+        Rector::observe(RectorObserver::class);
+        Footer::observe(FooterObserver::class);
+        Lecture::observe(LectureObserver::class);
+        Student::observe(StudentObserver::class);
+        History::observe(HistoryObserver::class);
+        AboutMe::observe(AboutMeObserver::class);
+        Lecture::observe(LectureObserver::class);
+        Facility::observe(FacilityObserver::class);
+        Greeting::observe(GreetingObserver::class);
+        Cooperation::observe(CooperationObserver::class);
+        VisionMission::observe(VisionMissionObserver::class);
     }
 }

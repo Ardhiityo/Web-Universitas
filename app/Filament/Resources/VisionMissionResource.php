@@ -32,6 +32,7 @@ class VisionMissionResource extends Resource
                         Textarea::make('point')
                             ->required(),
                     ])
+                    ->minItems(3)
                     ->columnSpanFull(),
                 Repeater::make('mission')
                     ->schema([
