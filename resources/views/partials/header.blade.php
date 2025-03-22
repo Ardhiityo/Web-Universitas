@@ -19,4 +19,4 @@
     <script src="{{ asset('js/app/script.js') }}" defer></script>
 </head>
 
-<body>
+<body class="bg-slate-500">
