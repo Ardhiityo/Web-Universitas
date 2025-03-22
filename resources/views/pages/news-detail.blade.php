@@ -29,7 +29,7 @@
                 {{ $news->content }}
             </p>
             <div class="max-h-[430px] rounded-3xl overflow-hidden object-cover w-full mt-4">
-                <img src="{{ asset('storage/' . $news->image) }}" alt="Berita" style="width: 100%;" />
+                <img src="{{ asset('storage/' . $news->image) }}" alt="Berita" class="w-full"" />
             </div>
         </div>
     </article>

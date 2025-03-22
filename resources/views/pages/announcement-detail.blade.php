@@ -18,8 +18,7 @@
                 </h2>
                 <div class="flex items-center gap-[18px] font-montserrat text-xs text-xneutral-200 font-semibold">
                     <div class="flex gap-[10px] items-center">
-                        <img src="{{ asset('storage/' . $announcement->admin->image) }}" alt="Admin"
-                            style="width: 25px; height: 25px;" />
+                        <img src="{{ asset('storage/' . $announcement->admin->image) }}" alt="Admin" class="w-25 h-25" />
                         <span class="text-xneutral-400">{{ $announcement->admin->name }}</span>
                     </div>
                     <span>{{ $announcement->created_at->translatedFormat('d F Y') }}</span>
