@@ -8,8 +8,8 @@ class Admin extends Model
 {
     protected $guarded = [];
 
-    public function news()
+    public function announcements()
     {
-        return $this->hasMany(News::class);
+        return $this->hasMany(Announcement::class);
     }
 }

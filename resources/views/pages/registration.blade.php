@@ -22,7 +22,8 @@
                         </label>
                         <input type="text" id="fullname" name="fullname" placeholder="Masukan Nama Lengkap Anda"
                             required
-                            class="border placeholder:font-semibold placeholder:text-xneutral-100 border-xneutral-100 py-[18px] px-6 rounded-lg" />
+                            class="border placeholder:font-semibold placeholder:text-xneutral-100 border-xneutral-100 py-[18px] px-6 rounded-lg"
+                            value="{{ old('fullname') }}" />
                         @error('fullname')
                             <span class="text-secondary-error">{{ $message }}</span>
                         @enderror
@@ -33,7 +34,8 @@
                             <span class="text-secondary-error">*</span>
                         </label>
                         <input type="email" id="email" name="email" placeholder="Masukan Email Anda" required
-                            class="border placeholder:font-semibold placeholder:text-xneutral-100 border-xneutral-100 py-[18px] px-6 rounded-lg" />
+                            class="border placeholder:font-semibold placeholder:text-xneutral-100 border-xneutral-100 py-[18px] px-6 rounded-lg"
+                            value="{{ old('email') }}" />
                         @error('email')
                             <span class="text-secondary-error">{{ $message }}</span>
                         @enderror
@@ -50,7 +52,8 @@
                                     Pilih jalur
                                 </option>
                                 @foreach ($entrySchemes as $entryScheme)
-                                    <option class="font-montserrat text-xneutral-300" value="{{ $entryScheme->id }}">
+                                    <option class="font-montserrat text-xneutral-300" value="{{ $entryScheme->id }}"
+                                        {{ old('entry_scheme_id') == $entryScheme->id ? 'selected' : '' }}>
                                         {{ $entryScheme->name }}
                                     </option>
                                 @endforeach
@@ -89,7 +92,8 @@
                         </label>
                         <input type="text" id="nickname" name="nickname" placeholder="Masukan Nama Panggilan Anda"
                             required
-                            class="border placeholder:font-semibold placeholder:text-xneutral-100 border-xneutral-100 py-[18px] px-6 rounded-lg" />
+                            class="border placeholder:font-semibold placeholder:text-xneutral-100 border-xneutral-100 py-[18px] px-6 rounded-lg"
+                            value="{{ old('nickname') }}" />
                         @error('nickname')
                             <span class="text-secondary-error">{{ $message }}</span>
                         @enderror
@@ -100,7 +104,8 @@
                             <span class="text-secondary-error">*</span>
                         </label>
                         <input type="tel" id="phone" name="phone" placeholder="Masukan Nomor HP Anda" required
-                            class="border placeholder:font-semibold placeholder:text-xneutral-100 border-xneutral-100 py-[18px] px-6 rounded-lg" />
+                            class="border placeholder:font-semibold placeholder:text-xneutral-100 border-xneutral-100 py-[18px] px-6 rounded-lg"
+                            value="{{ old('phone') }}" />
                         @error('phone')
                             <span class="text-secondary-error">{{ $message }}</span>
                         @enderror
@@ -115,7 +120,9 @@
                                 class="border peer appearance-none w-full placeholder:font-semibold placeholder:text-xneutral-100 border-xneutral-100 py-[18px] px-6 rounded-lg">
                                 <option value="">Pilih Program Studi 1</option>
                                 @foreach ($studyPrograms as $studyProgram)
-                                    <option value="{{ $studyProgram->id }}">{{ $studyProgram->name }}</option>
+                                    <option value="{{ $studyProgram->id }}"
+                                        {{ old('study_program_1_id') == $studyProgram->id ? 'selected' : '' }}>
+                                        {{ $studyProgram->name }}</option>
                                 @endforeach
                             </select>
                             <i
@@ -135,7 +142,9 @@
                                 class="border peer appearance-none w-full placeholder:font-semibold placeholder:text-xneutral-100 border-xneutral-100 py-[18px] px-6 rounded-lg">
                                 <option value="">Pilih Program Studi 2</option>
                                 @foreach ($studyPrograms as $studyProgram)
-                                    <option value="{{ $studyProgram->id }}">{{ $studyProgram->name }}</option>
+                                    <option value="{{ $studyProgram->id }}"
+                                        {{ old('study_program_2_id') == $studyProgram->id ? 'selected' : '' }}>
+                                        {{ $studyProgram->name }}</option>
                                 @endforeach
                             </select>
                             <i

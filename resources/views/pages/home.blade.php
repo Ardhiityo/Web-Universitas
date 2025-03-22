@@ -70,20 +70,22 @@
         <div class="container grid items-center grid-cols-1 gap-12 md:grid-cols-2">
             <div class="space-y-4 lg:ml-20">
                 <h3 class="text-xl font-bold text-primary-200 sm:text-2xl font-montserrat">
-                    TENTANG KAMI
+                    VISI KAMI
                 </h3>
                 <p class="text-2xl font-semibold font-montserrat sm:text-4xl">
-                    Membangun generasi
-                    <span class="text-secondary-purple">unggul</span> dan
-                    <span class="text-secondary-pink">berakhlak</span>
+                    Menjadi Universitas Yang Inovatif,
+                    <span class="text-secondary-purple">Profesional</span>, dan
+                    <span class="text-secondary-pink">Islami</span>
                 </p>
                 <p class="text-base font-semibold sm:text-lg text-xneutral-200 font-montserrat">
                     Universitas yang berfokus pada integritas, ilmu pengetahuan, dan
                     pengembangan karakter untuk membentuk pemimpin masa depan.
                 </p>
-                <a href="#"
-                    class="px-6 py-[14px] font-montserrat text-neutral-0 bg-white border w-fit text-lg font-semibold border-primary-200 text-primary-200 rounded-full flex gap-[10px]"><span>Tentang
-                        kami</span>
+                <a href="{{ route('visionMission') }}"
+                    class="px-6 py-[14px] font-montserrat text-neutral-0 bg-white border w-fit text-lg font-semibold border-primary-200 text-primary-200 rounded-full flex gap-[10px]">
+                    <span>
+                        Visi Misi Kami
+                    </span>
                     <i class="bi bi-arrow-right"></i>
                 </a>
             </div>
@@ -120,11 +122,9 @@
         <div>
             <button
                 class="w-10 h-10 transition-all rounded-full text-xneutral-400 hover:text-xneutral-0 bg-xneutral-0 hover:bg-xneutral-400">
-                <i class="text-4xl bi bi-arrow-left-short"></i>
-            </button>
-            <button
-                class="w-10 h-10 transition-all rounded-full text-xneutral-400 hover:text-xneutral-0 bg-xneutral-0 hover:bg-xneutral-400">
-                <i class="text-4xl bi bi-arrow-right-short"></i>
+                <a href="{{ route('news') }}">
+                    <i class="text-4xl bi bi-arrow-right-short"></i>
+                </a>
             </button>
         </div>
     </div>
@@ -134,7 +134,7 @@
                 <div class="max-h-[214px] rounded-2xl overflow-hidden mb-5">
                     <img src="{{ asset('storage/' . $news->image) }}" alt="Foto Berita" />
                 </div>
-                <a href="{{ route('news', ['slug' => $news->slug]) }}"
+                <a href="{{ route('newsDetail', ['slug' => $news->slug]) }}"
                     class="text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">
                     {{ $news->title }}
                 </a>
@@ -218,23 +218,21 @@
             <div>
                 <button
                     class="w-10 h-10 transition-all rounded-full text-xneutral-400 hover:text-xneutral-0 bg-xneutral-0 hover:bg-xneutral-400">
-                    <i class="text-4xl bi bi-arrow-left-short"></i>
-                </button>
-                <button
-                    class="w-10 h-10 transition-all rounded-full text-xneutral-400 hover:text-xneutral-0 bg-xneutral-0 hover:bg-xneutral-400">
-                    <i class="text-4xl bi bi-arrow-right-short"></i>
+                    <a href="{{ route('announcement') }}">
+                        <i class="text-4xl bi bi-arrow-right-short"></i>
+                    </a>
                 </button>
             </div>
         </div>
         <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
             @forelse ($latestAnnouncements as $announcement)
                 <div class="py-[26px] px-7 rounded-[20px] border border-xneutral-100 bg-white">
-                    <a href=""
+                    <a href="{{ route('announcementDetail', ['slug' => $announcement->slug]) }}"
                         class="mb-4 text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">
                         {{ $announcement->title }}
                     </a>
                     <p class="font-montserrat text-xs sm:text-sm font-semibold text-xneutral-200 mb-1.5">
-                        {{ $announcement->content }}
+                        {{ Str::limit($announcement->content, 50, '...') }}
                     </p>
                     <p class="text-xs font-semibold font-montserrat text-xneutral-200">
                         {{ date_format($announcement->created_at, 'd/m/y') }}

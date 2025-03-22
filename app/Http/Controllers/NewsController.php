@@ -14,7 +14,20 @@ class NewsController extends Controller
         private NewsService $newsRepository
     ) {}
 
-    public function news(string $slug)
+    public function news()
+    {
+        $footer = $this->footerRepository->getFooter();
+        $categories = $this->categoryRepository->getAllCategories();
+        $allNews = $this->newsRepository->getAllNews();
+
+        return view('pages.news', compact(
+            'footer',
+            'categories',
+            'allNews'
+        ));
+    }
+
+    public function newsDetail(string $slug)
     {
         if (!$news = $this->newsRepository->getNewsBySlug($slug))
             return redirect()->route('home');
@@ -22,6 +35,6 @@ class NewsController extends Controller
         $footer = $this->footerRepository->getFooter();
         $categories = $this->categoryRepository->getAllCategories();
 
-        return view('pages.news', compact('news', 'footer', 'categories'));
+        return view('pages.news-detail', compact('news', 'footer', 'categories'));
     }
 }

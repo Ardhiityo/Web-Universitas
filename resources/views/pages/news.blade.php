@@ -5,32 +5,40 @@
 @section('content')
     <article class="container mt-28">
         <h1 class="text-xl font-semibold text-xneutral-400 font-montserrat sm:text-2xl">
-            Berita terkini untuk Anda
+            Berita
         </h1>
         <p class="text-sm font-semibold text-xneutral-200 sm:text-base font-montserrat">
-            Temukan berita terbaru hari ini
+            Dapatkan Berita terbaru
         </p>
 
-        <div class="mt-11">
-            <div class="space-y-[14px] mb-3">
-                <h2 class="uppercase font-montserrat font-semibold text-xneutral-400 text-[22px] sm:text-3xl">
-                    {{ $news->title }}
-                </h2>
-                <div class="flex items-center gap-[18px] font-montserrat text-xs text-xneutral-200 font-semibold">
-                    <div class="flex gap-[10px] items-center">
-                        <img src="{{ asset('storage/' . $news->admin->image) }}" alt="Admin"
-                            style="width: 25px; height: 25px;" />
-                        <span class="text-xneutral-400">{{ $news->admin->name }}</span>
-                    </div>
-                    <span>{{ $news->created_at->translatedFormat('d F Y') }}</span>
+        <div class="grid grid-cols-1 gap-6 mt-8 sm:grid-cols-2 md:grid-cols-3">
+            @forelse ($allNews as $news)
+                <div class="py-[26px] px-7 rounded-[20px] border border-xneutral-100 bg-white">
+                    <a href="{{ route('newsDetail', ['slug' => $news->slug]) }}"
+                        class="mb-4 text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">
+                        {{ $news->title }}
+                    </a>
+                    <p class="font-montserrat text-xs sm:text-sm font-semibold text-xneutral-200 mb-1.5">
+                        {{ Str::limit($news->content, 50, '...') }}
+                    </p>
+                    <p class="text-xs font-semibold font-montserrat text-xneutral-200">
+                        {{ date_format($news->created_at, 'd/m/y') }}
+                    </p>
                 </div>
-            </div>
-            <p class="text-sm font-medium text-justify font-montserrat sm:text-base sm:col-span-8 text-xneutral-300">
-                {{ $news->content }}
-            </p>
-            <div class="max-h-[430px] rounded-3xl overflow-hidden object-cover w-full mt-4">
-                <img src="{{ asset('storage/' . $news->image) }}" alt="Berita" style="width: 100%;" />
-            </div>
+            @empty
+                <div class="py-[26px] px-7 rounded-[20px] border border-xneutral-100 bg-white">
+                    <a href=""
+                        class="mb-4 text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">
+                        No content available
+                    </a>
+                    <p class="font-montserrat text-xs sm:text-sm font-semibold text-xneutral-200 mb-1.5">
+                        No content available
+                    </p>
+                    <p class="text-xs font-semibold font-montserrat text-xneutral-200">
+                        No content available
+                    </p>
+                </div>
+            @endforelse
         </div>
     </article>
 @endsection

@@ -32,8 +32,14 @@ Route::get('/human-resource', [HumanResourceController::class, 'humanResource'])
 Route::get('/announcement', [AnnouncementController::class, 'announcement'])
     ->name('announcement');
 
-Route::get('/news/{slug}', [NewsController::class, 'news'])
+Route::get('/announcement/{slug}', [AnnouncementController::class, 'announcementDetail'])
+    ->name('announcementDetail');
+
+Route::get('/news', [NewsController::class, 'news'])
     ->name('news');
+
+Route::get('/news/{slug}', [NewsController::class, 'newsDetail'])
+    ->name('newsDetail');
 
 Route::get('/registration', [RegistrationController::class, 'registration'])
     ->name('registration');

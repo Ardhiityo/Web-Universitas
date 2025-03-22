@@ -24,4 +24,13 @@ class AnnouncementRepository implements AnnouncementService
     {
         return Announcement::latest()->take(3)->get();
     }
+
+    public function getAnnouncementBySlug(string $slug)
+    {
+        try {
+            return Announcement::where('slug', $slug)->firstOrFail();
+        } catch (\Throwable $th) {
+            return null;
+        }
+    }
 }

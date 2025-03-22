@@ -15,6 +15,11 @@ class NewsRepository implements NewsService
         //
     }
 
+    public function getAllNews()
+    {
+        return News::all();
+    }
+
     public function getTheLatestNews()
     {
         return News::latest()->take(3)->get();

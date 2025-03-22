@@ -45,10 +45,11 @@
                         class="absolute hidden overflow-hidden -translate-x-1/2 shadow-xl rounded-xl peer-hover:block hover:block group-hover:block top-full w-fit">
                         <div class="pt-12">
                             <div class="flex gap-4 px-6 py-3 bg-white rounded-xl">
-                                @foreach ($categories as $category)
+                                @forelse ($categories as $category)
                                     <div class="flex-1 px-4">
-                                        <span
-                                            class="block h-10 mb-4 font-semibold text-nowrap">{{ $category->name }}</span>
+                                        <span class="block h-10 mb-4 font-semibold text-nowrap">
+                                            {{ $category->name }}
+                                        </span>
                                         <ul class="space-y-1 list-disc text-nowrap">
                                             @foreach ($category->studyPrograms as $studyProgram)
                                                 <li>
@@ -59,7 +60,45 @@
                                             @endforeach
                                         </ul>
                                     </div>
-                                @endforeach
+                                @empty
+                                    <div class="flex-1 px-4">
+                                        <span class="block h-10 mb-4 font-semibold text-nowrap">
+                                            ILMU KESEHATAN
+                                        </span>
+                                        <ul class="space-y-1 list-disc text-nowrap">
+                                            <li>
+                                                <a href="#" class="block w-full py-1 pl-2 pr-8">
+
+                                                    D3 FARMASI
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="flex-1 px-4">
+                                        <span class="block h-10 mb-4 font-semibold text-nowrap">
+                                            EKONOMI DAN BISNIS
+                                        </span>
+                                        <ul class="space-y-1 list-disc text-nowrap">
+                                            <li>
+                                                <a href="#" class="block w-full py-1 pl-2 pr-8">
+                                                    S1 MANAJEMEN
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="flex-1 px-4">
+                                        <span class="block h-10 mb-4 font-semibold text-nowrap">
+                                            SAINS, TEKNOLOGI, DAN PENDIDIKAN
+                                        </span>
+                                        <ul class="space-y-1 list-disc text-nowrap">
+                                            <li>
+                                                <a href="#" class="block w-full py-1 pl-2 pr-8">
+                                                    S1 TEKNIK INFORMATIKA
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                @endforelse
                             </div>
                         </div>
                     </div>
@@ -104,23 +143,25 @@
                         <div>
                             <ul class="px-3 bg-white text-nowrap rounded-xl">
                                 <li>
-                                    <a href="sejarah.html" class="block w-full py-1 pl-2 pr-8">Sejarah</a>
+                                    <a href="{{ route('history') }}" class="block w-full py-1 pl-2 pr-8">Sejarah</a>
                                 </li>
                                 <li>
-                                    <a href="visimisi.html" class="block w-full py-1 pl-2 pr-8">Visi & Misi</a>
+                                    <a href="{{ route('visionMission') }}" class="block w-full py-1 pl-2 pr-8">Visi &
+                                        Misi</a>
                                 </li>
                                 <li>
-                                    <a href="sambutan.html" class="block w-full py-1 pl-2 pr-8">Sambutan Rektor</a>
+                                    <a href="{{ route('visionMission') }}" class="block w-full py-1 pl-2 pr-8">Sambutan
+                                        Rektor</a>
                                 </li>
                                 <li>
-                                    <a href="fasilitas.html" class="block w-full py-1 pl-2 pr-8">Fasilitas</a>
+                                    <a href="{{ route('facility') }}" class="block w-full py-1 pl-2 pr-8">Fasilitas</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </li>
                 <li>
-                    <a href="sdm.html" class="font-semibold">SDM</a>
+                    <a href="{{ route('humanResource') }}" class="font-semibold">SDM</a>
                 </li>
                 <li class="w-full h-full">
                     <div class="flex items-center w-full justify-between gap-1.5 x-dropdown-button cursor-pointer"
@@ -130,81 +171,54 @@
                     </div>
                     <div class="hidden w-full mt-4 x-dropdown-menu" id="menu2">
                         <div class="space-y-4">
-                            <div class="pl-3">
-                                <span class="flex justify-between mb-3 font-semibold text-nowrap x-dropdown-button"
-                                    data-target="menu-ilmu-kesehatan">ILMU KESEHATAN
-                                    <i class="transition-all bi bi-chevron-down"></i></span>
-                                <ul id="menu-ilmu-kesehatan" class="hidden space-y-1 x-dropdown-menu text-nowrap">
-                                    <li>
-                                        <a href="#" class="block w-full py-1 pl-2 pr-8">S1 KEPERAWATAN</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="block w-full py-1 pl-2 pr-8">S1 KEBIDANAN</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="block w-full py-1 pl-2 pr-8">S1 FARMASI</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="block w-full py-1 pl-2 pr-8">S1 ADMINISTRASI RUMAH
-                                            SAKIT</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="block w-full py-1 pl-2 pr-8">D3 KEBIDANAN</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="block w-full py-1 pl-2 pr-8">D3 FISIOTERAPI</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="block w-full py-1 pl-2 pr-8">D3 FARMASI</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="pl-3">
-                                <span class="flex justify-between mb-3 font-semibold text-nowrap x-dropdown-button"
-                                    data-target="menu-ekonomi-bisnis">EKONOMI DAN BISNIS
-                                    <i class="transition-all bi bi-chevron-down"></i></span>
-                                <ul id="menu-ekonomi-bisnis" class="hidden space-y-1 x-dropdown-menu text-nowrap">
-                                    <li>
-                                        <a href="#" class="block w-full py-1 pl-2 pr-8">S1 MANAJEMEN</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="block w-full py-1 pl-2 pr-8">S1 AKUNTANSI</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="block w-full py-1 pl-2 pr-8">S1 EKONOMI SYARIAH</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="block w-full py-1 pl-2 pr-8">S1 KEWIRAUSAHAAN</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="pl-3">
-                                <span class="flex justify-between mb-3 font-semibold text-nowrap x-dropdown-button"
-                                    data-target="menu-saintekdik">SAINS, TEKNOLOGI, DAN PENDIDIKAN
-                                    <i class="transition-all bi bi-chevron-down"></i></span>
-                                <ul id="menu-saintekdik" class="hidden space-y-1 x-dropdown-menu text-nowrap">
-                                    <li>
-                                        <a href="#" class="block w-full py-1 pl-2 pr-8">S1 PENDIDIKAN GURU
-                                            SD</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="block w-full py-1 pl-2 pr-8">S1 BIOLOGI</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="block w-full py-1 pl-2 pr-8">S1 FISIKA</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="block w-full py-1 pl-2 pr-8">S1 TEKNIK KOMPUTER</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="block w-full py-1 pl-2 pr-8">S1 TEKNIK INDUSTRI</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="block w-full py-1 pl-2 pr-8">S1 TEKNIK
-                                            INFORMATIKA</a>
-                                    </li>
-                                </ul>
-                            </div>
+                            @forelse ($categories as $category)
+                                <div class="pl-3">
+                                    <span class="flex justify-between mb-3 font-semibold text-nowrap x-dropdown-button"
+                                        data-target="menu-{{ Str::slug($category->name) }}">{{ $category->name }}
+                                        <i class="transition-all bi bi-chevron-down"></i></span>
+                                    @foreach ($category->studyPrograms as $studyProgram)
+                                        <ul id="menu-{{ Str::slug($category->name) }}"
+                                            class="hidden space-y-1 x-dropdown-menu text-nowrap">
+                                            <li>
+                                                <a href="#" class="block w-full py-1 pl-2 pr-8"
+                                                    style="text-transform: capitalize">{{ $studyProgram->name }}</a>
+                                            </li>
+                                        </ul>
+                                    @endforeach
+                                </div>
+                            @empty
+                                <div class="pl-3">
+                                    <span class="flex justify-between mb-3 font-semibold text-nowrap x-dropdown-button"
+                                        data-target="menu-ilmu-kesehatan">Ilmu Kesehatan
+                                        <i class="transition-all bi bi-chevron-down"></i></span>
+                                    <ul id="menu-ilmu-kesehatan" class="hidden space-y-1 x-dropdown-menu text-nowrap">
+                                        <li>
+                                            <a href="#" class="block w-full py-1 pl-2 pr-8">D3 Farmasi</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="pl-3">
+                                    <span class="flex justify-between mb-3 font-semibold text-nowrap x-dropdown-button"
+                                        data-target="menu-ekonomi-bisnis">Ekonomi & Bisnis
+                                        <i class="transition-all bi bi-chevron-down"></i></span>
+                                    <ul id="menu-ekonomi-bisnis" class="hidden space-y-1 x-dropdown-menu text-nowrap">
+                                        <li>
+                                            <a href="#" class="block w-full py-1 pl-2 pr-8">S1 Manajemen</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="pl-3">
+                                    <span class="flex justify-between mb-3 font-semibold text-nowrap x-dropdown-button"
+                                        data-target="menu-sains">Sains, Teknologi, & Pendidikan
+                                        <i class="transition-all bi bi-chevron-down"></i></span>
+                                    <ul id="menu-sains" class="hidden space-y-1 x-dropdown-menu text-nowrap">
+                                        <li>
+                                            <a href="#" class="block w-full py-1 pl-2 pr-8">S1 Teknik
+                                                Informatika</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            @endforelse
                         </div>
                     </div>
                 </li>

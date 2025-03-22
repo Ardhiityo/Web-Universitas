@@ -26,4 +26,19 @@ class AnnouncementController extends Controller
             'announcements'
         ));
     }
+
+    public function announcementDetail(string $slug)
+    {
+        if (!$announcement = $this->announcementRepository->getAnnouncementBySlug($slug))
+            return redirect()->route('home');
+
+        $footer = $this->footerRepository->getFooter();
+        $categories = $this->categoryRepository->getAllCategories();
+
+        return view('pages.announcement-detail', compact(
+            'footer',
+            'categories',
+            'announcement'
+        ));
+    }
 }

@@ -6,7 +6,7 @@
     <!-- MAIN SECTION -->
     <article class="container mt-28">
         <h1 class="text-xl font-semibold text-xneutral-400 font-montserrat sm:text-2xl">
-            Sejarah B-University
+            Visi Misi B-University
         </h1>
         <p class="text-sm font-semibold text-xneutral-200 sm:text-base font-montserrat">
             Bersama mengembangkan pendidikan Negeri

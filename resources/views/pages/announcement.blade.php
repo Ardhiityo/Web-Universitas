@@ -14,7 +14,7 @@
         <div class="grid grid-cols-1 gap-6 mt-8 sm:grid-cols-2 md:grid-cols-3">
             @forelse ($announcements as $announcement)
                 <div class="py-[26px] px-7 rounded-[20px] border border-xneutral-100 bg-white">
-                    <a href=""
+                    <a href="{{ route('announcementDetail', ['slug' => $announcement->slug]) }}"
                         class="mb-4 text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">
                         {{ $announcement->title }}
                     </a>

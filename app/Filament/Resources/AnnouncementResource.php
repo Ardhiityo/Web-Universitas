@@ -24,8 +24,10 @@ class AnnouncementResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Hidden::make('user_id')
-                    ->default(Auth::user()->id)
+                Forms\Components\Select::make('admin_id')
+                    ->relationship('admin', 'name')
+                    ->label('Creator')
+                    ->columnSpanFull()
                     ->required(),
                 Forms\Components\TextInput::make('title')
                     ->required()
@@ -50,7 +52,7 @@ class AnnouncementResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user.name')
+                Tables\Columns\TextColumn::make('admin.name')
                     ->label('Creator')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('title')

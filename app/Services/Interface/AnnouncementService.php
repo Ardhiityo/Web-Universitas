@@ -8,4 +8,5 @@ interface AnnouncementService
 {
     public function getAllAnnouncements();
     public function getTheLatestAnnouncements();
+    public function getAnnouncementBySlug(string $slug);
 }
