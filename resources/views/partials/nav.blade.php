@@ -223,7 +223,7 @@
                     </div>
                 </li>
                 <li>
-                    <a href="pengumuman.html" class="font-semibold">Pengumuman</a>
+                    <a href="{{ route('announcement') }}" class="font-semibold">Pengumuman</a>
                 </li>
             </ul>
         </div>
