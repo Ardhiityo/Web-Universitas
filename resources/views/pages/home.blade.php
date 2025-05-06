@@ -257,7 +257,3 @@
 </section>
 <!-- END OF ANNOUNCEMENT SECTION -->
 @endsection
-
-@section('footer')
-@include('partials.home-footer')
-@endsection

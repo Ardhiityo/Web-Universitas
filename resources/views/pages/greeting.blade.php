@@ -28,7 +28,3 @@
         </div>
     </article>
 @endsection
-
-@section('footer')
-    @include('partials.footer')
-@endsection

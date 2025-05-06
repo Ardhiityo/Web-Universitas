@@ -1,4 +1,4 @@
-@include('partials.header')
+@include('partials.head')
 @include('sweetalert::alert')
 
 <!-- NAVIGATION -->
@@ -9,4 +9,4 @@
 @yield('content')
 <!-- END OF CONTENT -->
 
-@yield('footer')
+@include('partials.foot')
