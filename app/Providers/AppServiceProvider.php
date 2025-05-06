@@ -25,6 +25,7 @@ use App\Observers\LectureObserver;
 use App\Observers\StudentObserver;
 use App\Observers\FacilityObserver;
 use App\Observers\GreetingObserver;
+use Illuminate\Support\Facades\URL;
 use App\Observers\CooperationObserver;
 use Illuminate\Support\ServiceProvider;
 use App\Observers\VisionMissionObserver;
@@ -42,6 +43,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Carbon::setLocale('id');
+
+        //file css, js hanya akan diload jika url ngrok-free.app, dan url asset menjadi https (default ngrok adalah http untuk file css, js)
+        if (str_contains(request()->url(), 'ngrok-free.app')) {
+            URL::forceScheme('https');
+        }
 
         News::observe(NewsObserver::class);
         Admin::observe(AdminObserver::class);

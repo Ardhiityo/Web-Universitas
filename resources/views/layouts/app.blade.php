@@ -2,7 +2,7 @@
 @include('sweetalert::alert')
 
 <!-- NAVIGATION -->
-@include('partials.nav')
+<x-header />
 <!-- END OF NAVIGATION -->
 
 <!-- CONTENT -->
